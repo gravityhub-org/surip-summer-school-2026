@@ -200,7 +200,7 @@
 	\end{columns}
 \end{frame}
 
-\begin{frame}{}
+\begin{frame}{Surely it's rigged now?}
 	\vspace{-2em}
 	\begin{columns}[T]
 		\begin{column}{0.4\textwidth}
@@ -211,13 +211,81 @@
 		\begin{column}{0.7\textwidth}\large
 			\cc{You repeat the experiment 8 times, each experiment gives 8 tails in 10 tosses.}
 			\ccc{Is the coin rigged?}
-			\cc{A rigged coin is around 162 times more likely to generate the data than a fair coin.}
-			\ccc{It's still probably not rigged. Why?}
+			\ccc{A rigged coin is around 162 times more likely to generate the data than a fair coin.}
+			\cc{It's still probably not rigged. Why?}
+			\ccc{See the news story on the left}
+		\end{column}
+	\end{columns}
+\end{frame}
+
+\begin{frame}{Posterior odds}
+	\vspace{-2em}
+	\begin{columns}[T]
+		\begin{column}{0.4\textwidth}
+			\centering
+			\includegraphics[width=\textwidth,height=0.9\textheight,keepaspectratio]{rigged_news.png}
+		\end{column}
+		\hfill
+		\begin{column}{0.7\textwidth}\large
+			\vspace{-1em}
+			\cc{Bayes factor is not the end of the story.}
+			\ccc{We also need to consider the prior odds:}
+			$$O^r_f = \frac{P(H_\text{rigged}|\vec d, {\color{blue}I})}{P(H_\text{fair}|\vec d,{\color{blue}I})}$$
+			$$= \frac{P(\vec d|H_\text{rigged},{\color{blue}I})}{P(\vec d|H_\text{fair},{\color{blue}I})} \cdot \frac{P(H_\text{rigged}|{\color{blue}I})}{P(H_\text{fair}|{\color{blue}I})} = 162 \cdot \frac{P(H_\text{rigged}|{\color{blue}I})}{P(H_\text{fair}|{\color{blue}I})}$$
+			\cc{Only $<$ 1 in 10,000 casinos are rigged}
+			\ccc{Macau Casinos are heavily regulated.}
+			\ccc{Prior odds of rigged vs fair: $1/10,000$}
+			$$O^r_f = 162 \cdot \frac{1}{10,000} = 0.0162\approx1/200$$
+			\cc{Conclusion: The coin is still probably not rigged.}
 		\end{column}
 	\end{columns}
 \end{frame}
 
 
+\begin{frame}{Home casino}
+	\vspace{-2em}
+	\begin{columns}[T]
+		\begin{column}{0.4\textwidth}
+			\centering
+			\includegraphics[width=\textwidth,height=0.9\textheight,keepaspectratio]{homecasino.png}
+		\end{column}
+		\hfill
+		\begin{column}{0.7\textwidth}\large
+			\vspace{-2em}
+			\cc{Home casino}
+			\ccc{You hear from around 50\% of your friends who plays at the casino that the casino cheats.}
+			\cc{You get 8 heads in 10 tosses, 8 times in a row.}
+			\ccc{Is the coin rigged now?}
+			$$O^r_f = \frac{P(H_\text{rigged}|\vec d, {\color{blue}I})}{P(H_\text{fair}|\vec d,{\color{blue}I})}$$
+			$$= \frac{P(\vec d|H_\text{rigged},{\color{blue}I})}{P(\vec d|H_\text{fair},{\color{blue}I})} \cdot \frac{P(H_\text{rigged}|{\color{blue}I})}{P(H_\text{fair}|{\color{blue}I})} = 162 \cdot \frac{P(H_\text{rigged}|{\color{blue}I})}{P(H_\text{fair}|{\color{blue}I})}$$
+			\cc{Prior odds of rigged vs fair: $1/1$}
+			$$O^r_f = 162 \cdot \frac{1}{1} = 162$$
+			\cc{Conclusion: The coin is probably rigged.}
+		\end{column}
+	\end{columns}
+\end{frame}
+
+\begin{frame}{What can we tell about the coin?}
+	\vspace{-2em}
+	\begin{columns}[T]
+		\begin{column}{0.4\textwidth}
+			\centering
+			\includegraphics[width=\textwidth,height=0.9\textheight,keepaspectratio]{cointossposterior.pdf}
+		\end{column}
+		\hfill
+		\begin{column}{0.7\textwidth}\large
+			\vspace{-2em}
+			\cc{What can we tell about the coin?}
+			$$P(q|H_\text{rigged},\vec d) = \frac{P(\vec d|H_\text{rigged},q) \cdot P(q|H_\text{rigged})}{P(\vec d|H_\text{rigged})}$$
+			%$$= \frac{\prod_{i=1}^{10} P(d_i|H_\text{rigged},q) \cdot P(q|H_\text{rigged})}{P(\vec d|H_\text{rigged})}$$
+			%$$= \frac{\prod_{i=1}^{10} \binom{N}{T} \cdot q^T \cdot (1-q)^{N-T}}{P(\vec d|H_\text{rigged})}$$
+			%The posterior distribution of $q$ is a Beta distribution with parameters $\alpha = 80 + 1$ and $\beta = 20 + 1$.
+			%$$P(q|H_\text{rigged},\vec d) = \frac{\Gamma(\alpha+\beta)}{\Gamma(\alpha)\Gamma(\beta)} q^{\alpha-1} (1-q)^{\beta-1}$$
+			%The mean of the posterior distribution is $\alpha/(\alpha+\beta) = 0.8$.
+			%\cc{The coin is likely rigged, and the bias is likely around 0.8.}
+		\end{column}
+	\end{columns}
+\end{frame}
 
 \end{document}
 
