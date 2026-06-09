@@ -11,6 +11,16 @@ uv sync
 uv run jupyter notebook macau_coin.ipynb
 ```
 
+## Exercises (script alternative)
+
+Same exercises as the notebook, as standalone scripts in `exercises/`:
+
+```bash
+uv run python exercises/01_binomial.py
+uv run python exercises/03_bayes_factor.py
+# ... etc.
+```
+
 # Syllabus
 
 By the end of the tutorial, the students will be able to:

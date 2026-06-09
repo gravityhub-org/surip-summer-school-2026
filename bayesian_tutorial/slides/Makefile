@@ -1,5 +1,6 @@
+all: slide.pdf
 
-slide.pdf: slide.tex
+slide.pdf: slide.tex cointossposterior.pdf
 	latexmk -pdf $<
 	latexmk -c
 
