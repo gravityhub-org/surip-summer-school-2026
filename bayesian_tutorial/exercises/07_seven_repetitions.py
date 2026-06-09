@@ -2,7 +2,7 @@
 
 You repeat the experiment 7 times (each: 8 tails in 10 tosses).
 
-A rigged coin is ~150x more likely to generate the data than a fair coin.
+A rigged coin is ~162x more likely to generate the data than a fair coin.
 
 1. Is the coin rigged?
 2. It's still probably not rigged. Why?
