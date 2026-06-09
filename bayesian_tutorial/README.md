@@ -26,7 +26,7 @@ uv run python exercises/03_bayes_factor.py
 By the end of the tutorial, the students will be able to:
 - Compute a Bayes factor to determine whether a coin used in a casino @ Macau is biased or not
 - Compute the coin bias posterior distribution
-- Apply Bayesian analysis to a real-world problem: Strongly lensed detection.
+- Apply Bayesian analysis to a real-world problem: Microlensing gravitational-wave detection
 
 # Syllabus table
 
