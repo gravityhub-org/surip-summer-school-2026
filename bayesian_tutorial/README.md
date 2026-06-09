@@ -1,7 +1,15 @@
 # Info
 
 - Instructor: Otto
-- Pre-requirements: python, git, uv, jupyter notebook, numpy, scipy, matplotlib
+- Pre-requirements: [uv](https://docs.astral.sh/uv/), git
+
+## Setup
+
+```bash
+cd bayesian_tutorial
+uv sync
+uv run jupyter notebook macau_coin.ipynb
+```
 
 # Syllabus
 
