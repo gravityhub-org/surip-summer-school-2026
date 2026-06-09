@@ -4,8 +4,8 @@ What can we tell about the coin?
 
     P(q | H_rigged, d) = P(d | H_rigged, q) * P(q | H_rigged) / P(d | H_rigged)
 
-With uniform P(q | H_rigged) and n independent experiments each with T tails
-in N tosses, the posterior is a Beta distribution:
+Uniform prior: P(q | H_rigged) = 1 on [0, 1].
+With n independent experiments each with T tails in N tosses, the posterior is a Beta distribution:
 
     P(q | H_rigged, d) ~ Beta(alpha, beta)
 
@@ -14,11 +14,14 @@ Use scipy.stats.beta — find alpha, beta from the data, then plot the posterior
 
 import matplotlib.pyplot as plt
 import numpy as np
+import scienceplots  # noqa: F401
 from scipy import stats
+
+plt.style.use(["science", "ieee", "bright"])
 
 T_home = 8
 N_home = 10
-n_experiments_posterior = 8
+n_experiments_posterior = 7
 
 total_tails = n_experiments_posterior * T_home
 total_heads = n_experiments_posterior * (N_home - T_home)

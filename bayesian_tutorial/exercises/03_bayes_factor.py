@@ -6,7 +6,7 @@ Evidence under the rigged hypothesis (marginalising over q):
 
     P(T | H_rigged, N) = integral_0^1 P(T | H_rigged, q, N) * P(q | H_rigged) dq
 
-Total ignorance for q: P(q | H_rigged) = 1 on [0, 1].
+Uniform prior on q: P(q | H_rigged) = 1 on [0, 1].
 
 Use scipy.integrate.quad, then compute B^r_f.
 """

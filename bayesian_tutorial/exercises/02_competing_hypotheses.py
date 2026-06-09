@@ -6,15 +6,18 @@ H_rigged: the coin is rigged
     P(T | H_fair, N)  = binom(N, T) * 0.5^T * 0.5^(N-T)
     P(T | H_rigged, q, N) = binom(N, T) * q^T * (1-q)^(N-T)
 
-q is the tail probability under the rigged hypothesis.
+T is the number of tails; q is the tail probability under H_rigged.
 
 Under which hypothesis is the data more likely?
-Assume total ignorance for q (uniform prior on [0, 1]).
+Uniform prior on q: P(q | H_rigged) = 1 on [0, 1].
 """
 
 import matplotlib.pyplot as plt
 import numpy as np
+import scienceplots  # noqa: F401
 from scipy import stats
+
+plt.style.use(["science", "ieee", "bright"])
 
 N = 10
 T = 8

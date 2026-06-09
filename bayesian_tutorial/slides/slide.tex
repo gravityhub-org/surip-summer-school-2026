@@ -59,7 +59,7 @@
 		\hfill
 		\begin{column}{0.6\textwidth}\large
 			\cc{Suppose}
-			\ccc{We toss the coin 10 times and get 8 heads}
+			\ccc{We toss the coin 10 times and get 8 tails}
 			\cc{Has the Casino rigged the coin?}
 		\end{column}
 	\end{columns}
@@ -76,9 +76,9 @@
 		\hfill
 		\begin{column}{0.6\textwidth}\large
 			\cc{Suppose}
-			\ccc{The probability that a coin returns head is 0.5}
-			\ccc{We toss the coin 10 times and get 8 heads}
-			\cc{What is the probability of getting 8 heads in 10 tosses?}
+			\ccc{The probability that a coin returns tail is 0.5}
+			\ccc{We toss the coin 10 times and get 8 tails}
+			\cc{What is the probability of getting 8 tails in 10 tosses?}
 		\end{column}
 	\end{columns}
 \end{frame}
@@ -93,11 +93,11 @@
 		\hfill
 		\begin{column}{0.6\textwidth}\large
 			\cc{Suppose}
-			\ccc{The probability that a coin returns head is 0.5}
-			\ccc{We toss the coin 10 times and get 8 heads}
-			\cc{What is the probability of getting 8 heads in 10 tosses?}
+			\ccc{The probability that a coin returns tail is 0.5}
+			\ccc{We toss the coin 10 times and get 8 tails}
+			\cc{What is the probability of getting 8 tails in 10 tosses?}
 			\ccc{Answer:}
-			$$P(T=8) = \binom{10}{8}\cdot 0.5^8 \cdot (1-0.5)^{10-8} = 45/1024$$
+			$$P(T=8) = \binom{N}{T}\cdot 0.5^T \cdot (1-0.5)^{N-T} = 45/1024 \quad (N{=}10,\; T{=}8)$$
 			$$\approx 0.044 \quad\quad(\text{around }4.4\%)$$
 			\cc{More likely to be rigged?}
 		\end{column}
@@ -116,12 +116,12 @@
 		\begin{column}{0.7\textwidth}\large
 			$$H_\text{fair}:\quad \text{The coin is fair}$$
 			$$H_\text{rigged}:\quad \text{The coin is rigged}$$
-			\cc{Probability of observing the data (8 heads in 10 tosses) under each hypothesis:}
+			\cc{Probability of observing the data ($T$ tails in $N$ tosses) under each hypothesis:}
 			$$P(T|H_\text{fair},N) = \binom{N}{T} \cdot (0.5)^T \cdot (1-0.5)^{N-T}$$
 			$$P(T|H_\text{rigged},q,N) = \binom{N}{T} \cdot q^T \cdot (1-q)^{N-T}$$
-			coin bias $q$ is the probability of getting heads under the rigged hypothesis.\\
+			$T$ is the number of tails; coin bias $q$ is the tail probability under $H_\text{rigged}$.\\
 			\cc{Under which hypothesis is the data more likely?}
-			\ccc{Assume total ignorance for $q$}
+			\ccc{Uniform prior on $q$: $P(q|H_\text{rigged}) = 1$ on $[0,1]$}
 		\end{column}
 	\end{columns}
 \end{frame}
@@ -140,7 +140,7 @@
 			$$B^r_f = \frac{P(T|H_\text{rigged},N)}{P(T|H_\text{fair},N)}$$ 
 			\cc{Evidence under rigged hypothesis:}
 			$$P(T|H_\text{rigged},N) = \int_0^1 P(T|H_\text{rigged},q,N) \cdot P(q|H_\text{rigged}) dq$$
-			\cc{Total ignorance for $q$: $P(q|H_\text{rigged}) = 1$}
+			\cc{Uniform prior on $q$: $P(q|H_\text{rigged}) = 1$ on $[0,1]$}
 			$$P(T|H_\text{rigged},N) = \frac{1}{N+1}$$
 			$$B^r_f \approx 2$$
 		\end{column}
@@ -190,11 +190,11 @@
 		\end{column}
 		\hfill
 		\begin{column}{0.7\textwidth}\large
-			\cc{You have ten datasets $\vec d$}
+			\cc{You have seven datasets $\vec d$}
 			\ccc{Let us assume that the datasets are independent}
-			$$P(\vec d|H_\text{rigged},N) = \prod_{i=1}^{10} P(d_i|H_\text{rigged},N)$$
-			$$P(\vec d|H_\text{fair},N) = \prod_{i=1}^{10} P(d_i|H_\text{fair},N)$$
-			$$B^r_f \approx (2.068\cdots)^7 \approx 162$$
+			$$P(\vec d|H_\text{rigged},N) = \prod_{i=1}^{7} P(d_i|H_\text{rigged},N)$$
+			$$P(\vec d|H_\text{fair},N) = \prod_{i=1}^{7} P(d_i|H_\text{fair},N)$$
+			$$B^r_f \approx (2.068\cdots)^7 \approx 150$$
 			\ccc{Is the coin rigged now?}
 		\end{column}
 	\end{columns}
@@ -209,9 +209,9 @@
 		\end{column}
 		\hfill
 		\begin{column}{0.7\textwidth}\large
-			\cc{You repeat the experiment 8 times, each experiment gives 8 tails in 10 tosses.}
+			\cc{You repeat the experiment 7 times, each experiment gives 8 tails in 10 tosses.}
 			\ccc{Is the coin rigged?}
-			\ccc{A rigged coin is around 162 times more likely to generate the data than a fair coin.}
+			\ccc{A rigged coin is around 150 times more likely to generate the data than a fair coin.}
 			\cc{It's still probably not rigged. Why?}
 			\ccc{See the news story on the left}
 		\end{column}
@@ -231,11 +231,11 @@
 			\cc{Bayes factor is not the end of the story.}
 			\ccc{We also need to consider the prior odds:}
 			$$O^r_f = \frac{P(H_\text{rigged}|\vec d, {\color{blue}I})}{P(H_\text{fair}|\vec d,{\color{blue}I})}$$
-			$$= \frac{P(\vec d|H_\text{rigged},{\color{blue}I})}{P(\vec d|H_\text{fair},{\color{blue}I})} \cdot \frac{P(H_\text{rigged}|{\color{blue}I})}{P(H_\text{fair}|{\color{blue}I})} = 162 \cdot \frac{P(H_\text{rigged}|{\color{blue}I})}{P(H_\text{fair}|{\color{blue}I})}$$
+			$$= \frac{P(\vec d|H_\text{rigged},{\color{blue}I})}{P(\vec d|H_\text{fair},{\color{blue}I})} \cdot \frac{P(H_\text{rigged}|{\color{blue}I})}{P(H_\text{fair}|{\color{blue}I})} = 150 \cdot \frac{P(H_\text{rigged}|{\color{blue}I})}{P(H_\text{fair}|{\color{blue}I})}$$
 			\cc{Only $<$ 1 in 10,000 casinos are rigged}
 			\ccc{Macau Casinos are heavily regulated.}
 			\ccc{Prior odds of rigged vs fair: $1/10,000$}
-			$$O^r_f = 162 \cdot \frac{1}{10,000} = 0.0162\approx1/200$$
+			$$O^r_f = 150 \cdot \frac{1}{10,000} = 0.015\approx1/67$$
 			\cc{Conclusion: The coin is still probably not rigged.}
 		\end{column}
 	\end{columns}
@@ -254,12 +254,12 @@
 			\vspace{-2em}
 			\cc{Home casino}
 			\ccc{You hear from around 50\% of your friends who plays at the casino that the casino cheats.}
-			\cc{You get 8 heads in 10 tosses, 8 times in a row.}
+			\cc{You get 8 tails in 10 tosses, 7 times in a row.}
 			\ccc{Is the coin rigged now?}
 			$$O^r_f = \frac{P(H_\text{rigged}|\vec d, {\color{blue}I})}{P(H_\text{fair}|\vec d,{\color{blue}I})}$$
-			$$= \frac{P(\vec d|H_\text{rigged},{\color{blue}I})}{P(\vec d|H_\text{fair},{\color{blue}I})} \cdot \frac{P(H_\text{rigged}|{\color{blue}I})}{P(H_\text{fair}|{\color{blue}I})} = 162 \cdot \frac{P(H_\text{rigged}|{\color{blue}I})}{P(H_\text{fair}|{\color{blue}I})}$$
+			$$= \frac{P(\vec d|H_\text{rigged},{\color{blue}I})}{P(\vec d|H_\text{fair},{\color{blue}I})} \cdot \frac{P(H_\text{rigged}|{\color{blue}I})}{P(H_\text{fair}|{\color{blue}I})} = 150 \cdot \frac{P(H_\text{rigged}|{\color{blue}I})}{P(H_\text{fair}|{\color{blue}I})}$$
 			\cc{Prior odds of rigged vs fair: $1/1$}
-			$$O^r_f = 162 \cdot \frac{1}{1} = 162$$
+			$$O^r_f = 150 \cdot \frac{1}{1} = 150$$
 			\cc{Conclusion: The coin is probably rigged.}
 		\end{column}
 	\end{columns}
@@ -274,15 +274,12 @@
 		\end{column}
 		\hfill
 		\begin{column}{0.7\textwidth}\large
-			\vspace{-2em}
 			\cc{What can we tell about the coin?}
 			$$P(q|H_\text{rigged},\vec d) = \frac{P(\vec d|H_\text{rigged},q) \cdot P(q|H_\text{rigged})}{P(\vec d|H_\text{rigged})}$$
-			$$= \frac{\prod_{i=1}^{10} P(d_i|H_\text{rigged},q) \cdot P(q|H_\text{rigged})}{P(\vec d|H_\text{rigged})}$$
-			$$= \frac{\prod_{i=1}^{10} \binom{N}{T} \cdot q^T \cdot (1-q)^{N-T}}{P(\vec d|H_\text{rigged})}$$
-			The posterior distribution of $q$ is a Beta distribution with parameters $\alpha = 80 + 1$ and $\beta = 20 + 1$.
-			$$P(q|H_\text{rigged},\vec d) = \frac{\Gamma(\alpha+\beta)}{\Gamma(\alpha)\Gamma(\beta)} q^{\alpha-1} (1-q)^{\beta-1}$$
-			The mean of the posterior distribution is $\alpha/(\alpha+\beta) = 0.8$.
-			\cc{The coin is likely rigged, and the tail bias is likely around 0.8.}
+			\ccc{Uniform prior: $P(q|H_\text{rigged}) = 1$ on $[0,1]$}
+			$$= \frac{\prod_{i=1}^{7} P(d_i|H_\text{rigged},q) \cdot P(q|H_\text{rigged})}{P(\vec d|H_\text{rigged})}$$
+			$$= \frac{\prod_{i=1}^{7} \binom{N}{T} \cdot q^T \cdot (1-q)^{N-T} \cdot P(q|H_\text{rigged})}{P(\vec d|H_\text{rigged})}$$
+			\cc{The coin is probably rigged and returns tails around 70-90 percent of the time.}
 		\end{column}
 	\end{columns}
 \end{frame}
