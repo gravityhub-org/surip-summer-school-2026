@@ -1,0 +1,9 @@
+numpy
+matplotlib
+pandas
+pillow
+pyyaml
+scikit-learn
+jupyterlab
+ipykernel
+torchinfo

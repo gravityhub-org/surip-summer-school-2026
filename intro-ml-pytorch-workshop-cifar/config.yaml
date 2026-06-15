@@ -1,0 +1,22 @@
+experiment_name: cifar_baseline
+
+data:
+  data_dir: data_cifar
+  image_size: 32
+  num_workers: 0
+
+model:
+  name: small_cnn
+  base_channels: 16
+
+training:
+  batch_size: 64
+  epochs: 30
+  learning_rate: 0.001
+  seed: 42
+  device: auto
+  num_threads: 1
+
+outputs:
+  runs_dir: outputs/runs
+  save_prediction_count: 16
