@@ -213,14 +213,16 @@ class SimpleExtrinsicGWTransient(Likelihood):
         dt_geocent = parameters['geocent_time'] - self.start_time
         dt = dt_geocent + time_shift
 
+        scale_factor = self.reference_parameters['luminosity_distance'] / parameters['luminosity_distance']
+
         h_inner_h = Fp*Fp * self.ifos_hp_hp_dict[det] + \
                     Fc*Fc * self.ifos_hc_hc_dict[det] + \
                     2*Fp*Fc * self.ifos_hp_hc_dict[det]
-        h_inner_h *= (self.reference_parameters['luminosity_distance'] / parameters['luminosity_distance']) ** 2
+        h_inner_h *= scale_factor ** 2
 
         d_inner_h = Fp * self.ifos_hp_d_dict[det](dt) + \
                     Fc * self.ifos_hc_d_dict[det](dt)
-        d_inner_h *= (self.reference_parameters['luminosity_distance'] / parameters['luminosity_distance'])
+        d_inner_h *= scale_factor
 
         return CalculatedSNRs(
             d_inner_h=d_inner_h,
