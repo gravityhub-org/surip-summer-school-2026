@@ -87,11 +87,14 @@ class SimpleExtrinsicGWTransient(Likelihood):
         self.ifos_hc_hc_dict = {}
         self.ifos_hp_hc_dict = {}
 
+        d_inner_d = 0
         for ifo in self.interferometers:
             self.ifos_hp_hp_dict[ifo.name] = ifo.optimal_snr_squared(hp).real
             self.ifos_hc_hc_dict[ifo.name] = ifo.optimal_snr_squared(hc).real
             self.ifos_hp_hc_dict[ifo.name] = ifo.template_template_inner_product(hp, hc).real
+            d_inner_d -= ifo.optimal_snr_squared(ifo.frequency_domain_strain).real
 
+        self.d_inner_d = d_inner_d.real
         self.set_data_inner_arrays(
             self.reference_parameters['geocent_time'], self.priors['geocent_time'], hp, hc
         )
@@ -127,7 +130,7 @@ class SimpleExtrinsicGWTransient(Likelihood):
             assert ifo_length == hpc_len
             mask = ifo.frequency_mask
 
-            data[:ifo_length] = ifo.frequency_domain_strain.conjugate()
+            data[:ifo_length][mask] = ifo.frequency_domain_strain[mask].conjugate()
             psd[:ifo_length][mask] = ifo.power_spectral_density_array[mask]
 
             _hp_d = np.fft.fft(hp_long * data / psd)[in_prior][sorted_idx]
@@ -135,23 +138,6 @@ class SimpleExtrinsicGWTransient(Likelihood):
 
             self.ifos_hp_d_dict[ifo.name] = interp1d(times, normalisation * _hp_d, assume_sorted=True)
             self.ifos_hc_d_dict[ifo.name] = interp1d(times, normalisation * _hc_d, assume_sorted=True)
-
-    def noise_log_likelihood(self):
-        """ Calculates the real part of noise log-likelihood
-
-        Returns
-        =======
-        float: The real part of the noise log likelihood
-
-        """
-        if not hasattr(self, 'd_inner_d'):
-            log_l = 0
-            for interferometer in self.interferometers:
-                log_l -= 2. / self.duration * np.sum(
-                    abs(interferometer.frequency_domain_strain) ** 2 /
-                    interferometer.power_spectral_density_array)
-            self.d_inner_d = log_l.real
-        return self.d_inner_d
 
     def log_likelihood_ratio(self):
         """ Calculates the real part of log-likelihood value
@@ -165,6 +151,16 @@ class SimpleExtrinsicGWTransient(Likelihood):
         for interferometer in self.interferometers:
             log_l += self.single_detector_log_likelihood(interferometer)
         return log_l.real
+
+    def noise_log_likelihood(self):
+        """ Calculates the real part of noise log-likelihood
+
+        Returns
+        =======
+        float: The real part of the noise log likelihood
+
+        """
+        return self.d_inner_d
 
     def log_likelihood(self):
         return self.log_likelihood_ratio() + self.noise_log_likelihood()
