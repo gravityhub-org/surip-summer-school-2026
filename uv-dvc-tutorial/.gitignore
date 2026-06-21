@@ -29,3 +29,4 @@ uv.lock
 .dvc/tmp/
 
 workshop/
+.DS_Store
