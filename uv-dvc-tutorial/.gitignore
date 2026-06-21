@@ -21,9 +21,6 @@ __pycache__/
 .pytest_cache/
 .colossus/
 
-pyproject.toml
-uv.lock
-
 # DVC cache (dvc.yaml and .dvc/config must NOT be gitignored — DVC refuses ignored pipeline files)
 .dvc/cache/
 .dvc/tmp/
