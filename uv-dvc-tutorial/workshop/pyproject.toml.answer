@@ -1,0 +1,29 @@
+[project]
+name = "surip2026-cosmo-demo"
+version = "0.1.0"
+description = "SURIP 2026 uv + DVC cosmology workshop demo"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "numpy>=1.24",
+    "scipy>=1.10",
+    "astropy>=5.3",
+    "matplotlib>=3.7,<3.11",
+    "healpy>=1.16",
+    "colossus>=1.3",
+    "lenstronomy>=1.10",
+    "requests>=2.28",
+    "dvc>=3.0",
+    "scienceplots>=2.0",
+    "pesummary>=1.6.4",
+    "h5py>=3.8",
+    "autolens>=2026.5.29.4",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7.0"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+markers = ["slow: marks tests as slow (deselect with '-m \"not slow\"')"]

@@ -1,0 +1,126 @@
+schema: '2.0'
+stages:
+  fetch_skymaps:
+    cmd: uv run python load_script/generate_skymaps.py
+    deps:
+    - path: load_script/generate_skymaps.py
+      hash: md5
+      md5: d4973164cfddc78b38e5f8a62ace9e67
+      size: 1655
+    outs:
+    - path: data/skymaps
+      hash: md5
+      md5: df89c64d15d9975850d3388f58b52e44.dir
+      size: 3794585
+      nfiles: 3
+  fetch_pe:
+    cmd: uv run python load_script/load_pe.py
+    deps:
+    - path: load_script/load_pe.py
+      hash: md5
+      md5: 6d1de39e2b35e319f97a1d7d03212a32
+      size: 966
+    outs:
+    - path: data/PE
+      hash: md5
+      md5: c79d8f84e7a592ece2cd0680d7371e9f.dir
+      size: 19698672
+      nfiles: 3
+  ex01_halo_ps:
+    cmd: uv run python exercises/ex01_halo_ps.py
+    deps:
+    - path: exercises/ex01_halo_ps.py
+      hash: md5
+      md5: 9f899a3aaaf3a8f6a20bae1d1d5e0976
+      size: 1512
+    - path: pyproject.toml
+      hash: md5
+      md5: d3950a749a82f3596290c2e0cc1371ed
+      size: 668
+    outs:
+    - path: output/ex01_halo_mass_function.png
+      hash: md5
+      md5: 13acde6547057501112dc39cba99c8e1
+      size: 30930
+    - path: output/ex01_power_spectrum.png
+      hash: md5
+      md5: 9db915f3fd4593643b2cd49c22987b1c
+      size: 38108
+  ex02_skymaps:
+    cmd: uv run python exercises/ex02_skymaps.py
+    deps:
+    - path: data/skymaps
+      hash: md5
+      md5: df89c64d15d9975850d3388f58b52e44.dir
+      size: 3794585
+      nfiles: 3
+    - path: exercises/ex02_skymaps.py
+      hash: md5
+      md5: 662d3b1cff2efcb5b3b1a522ca772f64
+      size: 3809
+    outs:
+    - path: output/ex02_GW150914.png
+      hash: md5
+      md5: 3ca2a21907920f8662ee32a66a8c0547
+      size: 132502
+    - path: output/ex02_overlay.png
+      hash: md5
+      md5: 317ff9c2b74477a01ca44c4c0e9860b9
+      size: 137546
+  ex03_euclid_mock:
+    cmd: uv run python exercises/ex03_euclid_mock.py
+    deps:
+    - path: data/euclid/euclid_lens_spec.md
+      hash: md5
+      md5: 15909fdabe69b5d880096a6dff5dde29
+      size: 1542
+    - path: exercises/ex03_euclid_mock.py
+      hash: md5
+      md5: ebaf53dd277ed01e77246d851e8d035d
+      size: 3242
+    outs:
+    - path: output/euclid_lens_dataset.png
+      hash: md5
+      md5: 11fabdeaef5f6b6e47db1eea55e51b7b
+      size: 664398
+    - path: output/euclid_lens_image.fits
+      hash: md5
+      md5: b44c954d7d979b81773ab6412d134746
+      size: 83520
+    - path: output/euclid_lens_image.png
+      hash: md5
+      md5: 001ff59345a49385e088edc9bc1e1b4b
+      size: 49167
+    - path: output/euclid_lens_noise_map.fits
+      hash: md5
+      md5: 6282dae4834d075033db6b1b91daba89
+      size: 83520
+    - path: output/euclid_lens_psf.fits
+      hash: md5
+      md5: aa20916abf2eb8a68601f53f533ba9b7
+      size: 8640
+  ex04_PE:
+    cmd: uv run python exercises/ex04_PE.py
+    deps:
+    - path: data/PE
+      hash: md5
+      md5: c79d8f84e7a592ece2cd0680d7371e9f.dir
+      size: 19698672
+      nfiles: 3
+    - path: exercises/ex04_PE.py
+      hash: md5
+      md5: 1d9663ae97dfb6da5de97ad9447214c0
+      size: 1713
+    outs:
+    - path: output/ex04_corner_GW150914.png
+      hash: md5
+      md5: 708b67d5a4510736d2802e727847356f
+      size: 118230
+    - path: output/ex04_corner_GW170814.png
+      hash: md5
+      md5: ad5a4191a4b9dbdda265f5013ea7c18c
+      size: 107065
+    - path: output/ex04_corner_GW170817.png
+      hash: md5
+      md5: 3609472a8623c21d7fddf119a69c8d6b
+      size: 112553

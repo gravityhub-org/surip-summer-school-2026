@@ -1,0 +1,31 @@
+.cursor/
+.cursorignore
+AGENTS.md
+
+# Large data files (pipeline fetch stages; keep small docs/config below)
+data/*
+!data/DATA.md
+!data/euclid/
+!data/euclid/**
+!data/skymaps/.gitkeep
+!data/PE/.gitkeep
+
+# Generated plots
+output/
+!output/.gitkeep
+
+# Python / env
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.colossus/
+
+pyproject.toml
+uv.lock
+
+# DVC cache (dvc.yaml and .dvc/config must NOT be gitignored — DVC refuses ignored pipeline files)
+.dvc/cache/
+.dvc/tmp/
+
+workshop/
