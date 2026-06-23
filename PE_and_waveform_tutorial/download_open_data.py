@@ -8,12 +8,6 @@ from pesummary.gw.fetch import fetch_open_samples
 datadir = Path('./data')
 datadir.mkdir(exist_ok=True)
 
-trigger_time = 1126259462.4
-duration = 4  # Analysis segment duration
-post_trigger_duration = 2  # Time between trigger time and end of segment
-end_time = trigger_time + post_trigger_duration
-start_time = end_time - duration
-
 print("Downloading public strain data, this may take a while...")
 gwosc_url = "https://gwosc.org/archive/data/O1_16KHZ/1126170624/"
 for det in ['H1', 'L1']:
