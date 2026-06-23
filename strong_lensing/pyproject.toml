@@ -1,0 +1,15 @@
+[project]
+name = "strong-lensing"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "bilby>=2.8.0",
+    "jupyter>=1.1.1",
+    "lalsuite>=7.26.15",
+    "lenstronomy>=1.14.1",
+    "notebook>=7.6.0",
+    "pandas>=3.0.3",
+    "requests>=2.34.2",
+]
