@@ -5,3 +5,5 @@
 **figures/
 **.sub
 intro-ml-pytorch-workshop-cifar/data_cifar/
+PE_and_waveform_tutorial/data
+PE_and_waveform_tutorial/outdir**
